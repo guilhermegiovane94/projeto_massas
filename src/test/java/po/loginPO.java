@@ -16,7 +16,7 @@ public class loginPO extends driverFactory {
     public WebElement txtUser;
 
     @FindBy(css = "#password")
-    public WebElement txtSenha;
+    public WebElement txtPassword;
 
     @FindBy(css = "#loginButton")
     public WebElement btnLogin;

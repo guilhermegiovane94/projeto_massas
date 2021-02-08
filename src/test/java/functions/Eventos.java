@@ -2,10 +2,11 @@ package functions;
 
 import factory.driverFactory;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -25,21 +26,12 @@ public class Eventos extends driverFactory {
     //Método para inserir texto nos campos Input no site
     public static void insereTexto(WebElement elemento, String texto) {
 
-        //Verifica se o elemento existe, é exibido e está habilitado, caso contrário joga um erro e informa qual elemento o erro ocorreu
         try {
-            if (!elemento.isDisplayed()) {
-             
-                Assert.fail("O campo não foi exibido");
+            if (!elemento.isDisplayed() && !elemento.isEnabled()) {
+                isElementLoaded(elemento);
             }
-            if (!elemento.isEnabled()) {
-             
-                Assert.fail("O campo não está habilitado");
-            }
-
-            //Se passada todas as validações, insere os dados no campo
-            //WebActions.setText(getBrowser(), elemento, texto, 5);
             elemento.sendKeys(texto);
-            Thread.sleep(1000);
+            Thread.sleep(600);
 
         } catch (NoSuchElementException | InterruptedException e) {
             e.printStackTrace();
@@ -48,50 +40,14 @@ public class Eventos extends driverFactory {
         }
     }
 
-    //Método para inserir texto nos campos Input no site
-    public static void insereTextoComTab(WebElement elemento, String texto, String lugar) {
-
-        //Verifica se o elemento existe, é exibido e está habilitado, caso contrário joga um erro e informa qual elemento o erro ocorreu
+    public static void escolheSelect(WebElement elemento, String opcao) {
         try {
-            if (!elemento.isDisplayed()) {
-             
-                Assert.fail("O campo '" + lugar + "' não foi exibido");
-            }
-            if (!elemento.isEnabled()) {
-             
-                Assert.fail("O campo '" + lugar + "' não está habilitado");
-            }
 
-            //Se passada todas as validações, insere os dados no campo
-            elemento.sendKeys(texto);
-          //  elemento.sendKeys(Key.TAB);
-
-        } catch (NoSuchElementException  e) {
-            e.printStackTrace();
-         
-            Assert.fail("O campo '" + lugar + "' não foi encontrado");
-        }
-    }
-
-    //Método para selecionar determinada opção nos Selects (menu dropdown de múltiplas opções) no site. Sempre escolhe de acordo com o texto das opções
-    public static void escolheSelect(WebElement elemento, String opcao, String lugar) {
-
-        try {
-            //Verifica se o texto enviado é nulo ou vazio
             if (opcao != null || !opcao.equals("")) {
-                //Verifica se o elemento existe, é exibido e está habilitado, caso contrário joga um erro e informa qual elemento o erro ocorreu
-                if (!elemento.isDisplayed()) {
-                 
-                    Assert.fail("O campo '" + lugar + "' não foi exibido");
+                if (!elemento.isDisplayed() && !elemento.isEnabled()) {
+                    isElementLoaded(elemento);
                 }
-                if (!elemento.isEnabled()) {
-                 
-                    Assert.fail("O campo '" + lugar + "' não está habilitado");
-                }
-
                 Select select = new Select(elemento);
-
-                //Verifica se a opção existe
                 List<WebElement> listaOpcoes = select.getOptions();
                 boolean encontrado = false;
                 for (WebElement item : listaOpcoes) {
@@ -99,80 +55,169 @@ public class Eventos extends driverFactory {
                         encontrado = true;
                     }
                 }
-
-                //Caso não encontrado, lança um erro e imprime as opções disponíveis no Reports
-                if (!encontrado) {
-                
-                    for (WebElement item : listaOpcoes) {
-                     
-                    }
-                 
-                    Assert.fail("A opção '" + opcao + "' não existe no menu '" + lugar + "'");
-                }
-
-                //Se passada todas as validações, seleciona o elemento no Select
                 select.selectByVisibleText(opcao);
             }
-        } catch (NoSuchElementException n){
+        } catch (Exception e){
          
-            n.printStackTrace();
-            Assert.fail("Campo " + lugar + " não encontrado.");
-        }
-        catch(Exception e)
-        {
             e.printStackTrace();
-         
-            Assert.fail("Erro não mapeado acionar automação!");
+            Assert.fail("Campo não encontrado.");
         }
     }
 
-    //Método para clicar num elemento no site
     public static void clicaElemento(WebElement elemento)  {
 
         //Verifica se o elemento existe, é exibido e está habilitado, caso contrário joga um erro e informa qual elemento o erro ocorreu
         try{
-
-            if (!elemento.isDisplayed()){
-                Assert.fail("O botão  não foi exibido");
+            if (!elemento.isDisplayed() && !elemento.isEnabled()) {
+                isElementLoaded(elemento);
             }
 
-            if (!elemento.isEnabled()){
-                Assert.fail("O botão  não está habilitado");
-            }
-
-            //Se passada todas as validações, clica no elemento
             elemento.click();
-            Thread.sleep(1000);
+            Thread.sleep(600);
 
         } catch (NoSuchElementException | InterruptedException e){
             e.printStackTrace();
-         
             Assert.fail("O elemento  não foi encontrado");
         }
     }
 
-    //Tira print com highlight antes de clicar em elemento
-    public static void clicaElemento(WebElement elemento, String nomeBotao, boolean highlightPrint)  {
+    public static void escolheList(WebElement elemento, String opcao) {
+        try {
 
-        //Verifica se o elemento existe, é exibido e está habilitado, caso contrário joga um erro e informa qual elemento o erro ocorreu
-        try{
+            if (opcao != null || !opcao.equals("")) {
+                if (!elemento.isDisplayed() && !elemento.isEnabled()) {
+                    isElementLoaded(elemento);
+                }
 
-            if (!elemento.isDisplayed()){
-                Assert.fail("O botão '" + nomeBotao + "' não foi exibido");
+                //Verifica se a opção existe
+                List<WebElement> listaOpcoes = elemento.findElements(By.tagName("a"));
+                WebElement item = null;
+                for (int i = 0; i< listaOpcoes.size(); i++) {
+                    item = listaOpcoes.get(i);
+                    if (opcao.trim().equals(item.getText().trim())) {
+                        break;
+                    }
+                }
+                clicaElemento(item);
+
             }
+        } catch (NoSuchElementException n){
 
-            if (!elemento.isEnabled()){
-                Assert.fail("O botão '" + nomeBotao + "' não está habilitado");
-            }
-
-            //Se passada todas as validações, clica no elemento
-           
-            elemento.click();
-
-        } catch (NoSuchElementException e){
+            n.printStackTrace();
+            Assert.fail("Campo não encontrado.");
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
-         
-            Assert.fail("O elemento '" + nomeBotao + "' não foi encontrado");
+
+            Assert.fail("Erro não mapeado acionar automação!");
         }
     }
+
+    public static void escolheTable(WebElement elemento, String opcao) {
+
+        try {
+
+            if (opcao != null || !opcao.equals("")) {
+                if (!elemento.isDisplayed() && !elemento.isEnabled()) {
+                    isElementLoaded(elemento);
+                }
+                List<WebElement> listaOpcoes = elemento.findElements(By.tagName("tr"));
+                WebElement item = null;
+                for (int i = 0; i< listaOpcoes.size(); i++) {
+                    item = listaOpcoes.get(i);
+                    if (item.getText().trim().contains(opcao.trim())) {
+                        break;
+                    }
+                }
+                clicaElemento(item);
+            }
+        } catch (NoSuchElementException n){
+
+            n.printStackTrace();
+            Assert.fail("Campo não encontrado.");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+
+            Assert.fail("Erro não mapeado acionar automação!");
+        }
+    }
+
+
+    public static WebElement isElementLoaded(WebElement elementToBeLoaded) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+        WebElement element = wait.until(ExpectedConditions.visibilityOf(elementToBeLoaded));
+        return element;
+    }
+
+    public static void waitForLoad() {
+        new WebDriverWait(getDriver(), 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+    }
+
+    public static String valorBit(String linha)
+    {
+        //pega o valor do bit apos :
+        int length = linha.length();
+        int index = linha.indexOf(':');
+        String valorBit = linha.substring(index + 1, length);
+
+        return valorBit.trim();
+    }
+
+    public static String tipoBit(String linha)
+    {
+        int length = linha.length();
+        int index = linha.indexOf(':');
+        if (index > -1)
+        {
+            String tipoBit = linha.substring(0,index);
+
+            //verifica se no dicionario de bits esse bit encontrado existe
+            for (String bit : VariaveisGlobais.bits)
+            {
+                if (bit.equalsIgnoreCase(tipoBit.trim())    )
+                {
+                    // return montaBit(tipoBit.Trim());
+
+                    return bit;
+                }
+            }
+        }
+
+        return "";
+    }
+
+    public static String getValorBit(List<WebElement> linhas, String bit){
+        String retorno = "";
+        for(WebElement linha : linhas){
+            if(tipoBit(linha.getText()).equalsIgnoreCase(bit)){
+                retorno = valorBit(linha.getText());
+                break;
+            }
+        }
+        return retorno;
+    }
+
+    public static String getLinhaBit(List<WebElement> linhas, String bit){
+        String retorno = "";
+        for(WebElement linha : linhas){
+            if(tipoBit(linha.getText()).equalsIgnoreCase(bit)){
+                retorno = linha.getText();
+                break;
+            }
+        }
+        return retorno;
+    }
+
+    public static String validoResposta(List<WebElement> linhas){
+        String bit = "039";
+        String temp = getValorBit(linhas,bit);
+        int index = temp.indexOf("=");
+        String retorno = temp.substring(index + 1, index + 7);
+        return retorno.replace("\"","").trim();
+    }
+
 }

@@ -2,6 +2,6 @@ package functions;
 
 import factory.driverFactory;
 
-public class basePA extends driverFactory implements Actions {
+public final class basePA extends driverFactory implements Actions {
 
 }

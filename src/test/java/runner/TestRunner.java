@@ -11,14 +11,16 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         glue = {"stepDefinitions"},
-        features = {"src/test/java/features"})
+        features = {"src/test/java/features"},
+        tags = "@login,@massa")
 public class TestRunner extends driverFactory {
     @BeforeClass
-    public static void start(){
+    public static void start() {
         startDriver();
     }
+
     @AfterClass
-    public static void finish(){
-        //quitDriver();
+    public static void finish() {
+        quitDriver();
     }
 }
