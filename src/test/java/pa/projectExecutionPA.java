@@ -32,6 +32,8 @@ public class projectExecutionPA extends driverFactory implements Actions {
             case"lupa": return pagina.btnLupa;
             case"primeiro expand": return pagina.btnPrimeiroExpand;
             case"segundo expand": return pagina.btnSegundoExpand;
+            case"segundo expand alt": return pagina.btnSegundoExpandAlt;
+            case"modal": return pagina.modal;
             //case"linhas": return pagina.linhasTransacao;
             default:
                 System.out.println("Elemento não implementado "+nome);;
@@ -42,26 +44,30 @@ public class projectExecutionPA extends driverFactory implements Actions {
 
     @Override
     public void validar(String campo) {
-        boolean loop = true;
-        while (loop) {
-            String classe = getElement(campo).getAttribute("class");
-            if(classe.contains("glyphicon-unchecked") ||
-                    classe.contains("glyphicon-refresh") ||
-                    classe.contains("glyphicon-time") ){
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        if(campo.equalsIgnoreCase("modal")){
+            Eventos.isElementLoaded(getElement(campo));
+        }else{
+            boolean loop = true;
+            while (loop) {
+                String classe = getElement(campo).getAttribute("class");
+                if(classe.contains("glyphicon-unchecked") ||
+                        classe.contains("glyphicon-refresh") ||
+                        classe.contains("glyphicon-time") ){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    loop=false;
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }else{
-                loop=false;
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
 
+            }
         }
     }
 
@@ -70,7 +76,19 @@ public class projectExecutionPA extends driverFactory implements Actions {
        List<WebElement> linhas = pagina.linhasTransacao;
        String retorno = Eventos.validoResposta(linhas);
 
-       if(!retorno.equalsIgnoreCase("00")){
+        if(retorno.equalsIgnoreCase("Código")){
+            Eventos.clicaElemento(getElement("segundo expand alt"));
+            linhas = pagina.linhasTransacaoAlt;
+            retorno = Eventos.validoResposta(linhas);
+
+            arquivo.add(Eventos.getLinhaBit(linhas,"002"));
+            arquivo.add(Eventos.getLinhaBit(linhas,"011"));
+            arquivo.add(Eventos.getLinhaBit(linhas,"012"));
+            arquivo.add(Eventos.getLinhaBit(linhas,"013"));
+            arquivo.add(Eventos.getLinhaBit(linhas,"039"));
+            arquivo.add(Eventos.getLinhaBit(linhas,"048"));
+
+        } else if(!retorno.equalsIgnoreCase("00") && !retorno.equalsIgnoreCase("Código")){
            //mapa de bits para erros
            arquivo.add(Eventos.getLinhaBit(linhas,"002"));
            arquivo.add(Eventos.getLinhaBit(linhas,"011"));
@@ -106,4 +124,5 @@ public class projectExecutionPA extends driverFactory implements Actions {
         CT = CT.substring(0,index);
         arquivo.add(CT);
     }
+
 }

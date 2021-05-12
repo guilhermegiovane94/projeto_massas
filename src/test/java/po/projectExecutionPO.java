@@ -26,7 +26,7 @@ public class projectExecutionPO extends driverFactory {
     public WebElement btnCasoDeTeste;
 
 
-    @FindBy(xpath = "//div[@id='testCaseList']//button[contains(text(),'Re-Executar')]")
+    @FindBy(xpath = "//div[@id='testCaseList']//button[contains(text(),'Executar')]")
     public WebElement btnExecutarCT;
 
     @FindBy(xpath = "//div[@id='testCaseList']//button[contains(text(),'Gerar log')]")
@@ -44,10 +44,20 @@ public class projectExecutionPO extends driverFactory {
     @FindBy(xpath = "//*[@id=\"tree\"]//td[@id='ygtvt13']")
     public WebElement btnSegundoExpand;
 
+    @FindBy(xpath = "//*[@id=\"tree\"]//td[@id='ygtvt11']")
+    public WebElement btnSegundoExpandAlt;
+
+    @FindBy(xpath = "//*[@id=\"tree\"]")
+    public WebElement modal;
 
     @FindAll({
             @FindBy(xpath = "//*[@id=\"tree\"]//div[@id='ygtvc13']//div[@class='ygtvitem']")
     })
     public List<WebElement> linhasTransacao;
 
+
+    @FindAll({
+            @FindBy(xpath = "//*[@id=\"tree\"]//div[@id='ygtvc11']//div[@class='ygtvitem']")
+    })
+    public List<WebElement> linhasTransacaoAlt;
 }

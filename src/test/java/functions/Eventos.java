@@ -31,7 +31,7 @@ public class Eventos extends driverFactory {
                 isElementLoaded(elemento);
             }
             elemento.sendKeys(texto);
-            Thread.sleep(600);
+            Thread.sleep(450);
 
         } catch (NoSuchElementException | InterruptedException e) {
             e.printStackTrace();
@@ -73,7 +73,7 @@ public class Eventos extends driverFactory {
             }
 
             elemento.click();
-            Thread.sleep(600);
+            Thread.sleep(450);
 
         } catch (NoSuchElementException | InterruptedException e){
             e.printStackTrace();
@@ -147,13 +147,13 @@ public class Eventos extends driverFactory {
 
 
     public static WebElement isElementLoaded(WebElement elementToBeLoaded) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+        WebDriverWait wait = new WebDriverWait(getDriver(), 20);
         WebElement element = wait.until(ExpectedConditions.visibilityOf(elementToBeLoaded));
         return element;
     }
 
     public static void waitForLoad() {
-        new WebDriverWait(getDriver(), 30).until((ExpectedCondition<Boolean>) wd ->
+        new WebDriverWait(getDriver(), 20).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
     }
 

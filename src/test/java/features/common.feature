@@ -11,9 +11,8 @@ Funcionalidade: Gerar Massa
     Dado usuário está na tela "index"
     E valido o campo "usuario"
     Exemplos:
-      | user                                | password    |
-     # |                                     |             |
-
+      | user | password |
+      |      |          |
 
   @massa
   Esquema do Cenario: login usuário
@@ -44,6 +43,7 @@ Funcionalidade: Gerar Massa
     E seleciono o campo "caso de teste"
     E adiciono header ao arquivo
     Entao clico no botão "lupa"
+    E valido o campo "modal"
     Entao clico no botão "primeiro expand"
     Entao clico no botão "segundo expand"
     E recupero as linhas da transação
@@ -52,76 +52,6 @@ Funcionalidade: Gerar Massa
     #Entao clico no botão "gerar log teste"
 
     Exemplos:
-      | ambiente | pesquisa parceiro | nome projeto                                      | caso de teste |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0001 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0001 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0001 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0001 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0001 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0001 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0001 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0001 * |
-
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0003 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0003 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0003 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0003 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0003 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0003 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0003 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0003 * |
-
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0005 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0005 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0005 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0005 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0005 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0005 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0005 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0005 * |
-
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0011 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0011 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0011 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0011 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0011 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0011 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0011 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0011 * |
-
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0013 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0013 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0013 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0013 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0013 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0013 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0013 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0013 * |
-
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0027 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0027 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0027 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0027 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0027 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0027 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0027 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0027 * |
-
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0031 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0031 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0031 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0031 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0031 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0031 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0031 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0031 * |
-
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0033 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0033 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0033 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0033 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0033 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0033 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0033 * |
-      | Injetor  | *20.2*fitbank *   | JNL - 20.2 - EMS - FITBANK - Testes de Mobilidade | *CT070.0033 * |
-
+      | ambiente | pesquisa parceiro | nome projeto | caso de teste |
+     # | Injetor  | *arbi*            | SOL0049790   | *CT070.1056*  |
+    
